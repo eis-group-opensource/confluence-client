@@ -1,0 +1,62 @@
+<build>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.exigen.ipb.confluence.client</groupId>
+                <artifactId>maven-eisconfluence-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <confluenceConfiguration
+                            implementation="com.exigen.ipb.confluence.client.config.impl.ConfluenceConfiguration">
+                        <serverURI>https://wiki.exigeninsurance.com/</serverURI>
+                        <userName>myTestUser</userName>
+                        <password>fasdfadsf</password>
+                        <spaceKey>EISDOC71</spaceKey>
+                        <rootPageTitle>[Commissions] References</rootPageTitle>
+                        <pagePrefix>[Commissions]</pagePrefix>
+                    </confluenceConfiguration>
+                    <inputConfiguration
+                            implementation="com.exigen.ipb.confluence.client.config.impl.InputConfiguration">
+                        <publicDoc>true</publicDoc>
+                        <documentationRootFolder>${project.build.directory}/staging/commission-parent/
+                        </documentationRootFolder>
+                        <documentationRootFile>index.html</documentationRootFile>
+                        <fileEncoding>UTF-8</fileEncoding>
+                        <inclusiveLinks>
+                            <param>SPI</param>
+                            <param>Jobs</param>
+                            <param>Events</param>
+                            <param>SpringConfig</param>
+                            <param>Lookups</param>
+                            <param>Ledger postings</param>
+                        </inclusiveLinks>
+                        <skipDirs>
+                            <param>target</param>
+                            <param>.hg</param>
+                            <param>test</param>
+                            <param>e2e</param>
+                            <param>site</param>
+                        </skipDirs>
+                    </inputConfiguration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+
+    <plugins>
+        <plugin>
+            <groupId>com.exigen.ipb.confluence.client</groupId>
+            <artifactId>maven-eisconfluence-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>xhtml</id>
+                    <phase>site</phase>
+                    <goals>
+                        <goal>aggregate-xhtml</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
